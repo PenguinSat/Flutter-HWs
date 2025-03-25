@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthiFy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the HealthFy!</h1>
+    <form id="userForm">
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" required>
+      
+      <label for="height">Height (cm):</label>
+      <input type="number" id="height" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" required>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <label for="bodyType">Body Type:</label>
+      <select id="bodyType" required>
+        <option value="ectomorph">Ectomorph</option>
+        <option value="mesomorph">Mesomorph</option>
+        <option value="endomorph">Endomorph</option>
+      </select>
+
+      <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div id="recommendations" class="results">
+      <h2>Your Recommendations</h2>
+      <p id="workout"></p>
+      <p id="diet"></p>
+      <p id="trainingType"></p>
+      <p id="dailyCalories"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
