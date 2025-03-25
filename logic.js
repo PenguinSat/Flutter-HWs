@@ -1,4 +1,3 @@
-// app.js
 document.getElementById('userForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
@@ -32,5 +31,33 @@ function displayRecommendations(recommendations) {
   document.getElementById('trainingType').textContent = `Training Type: ${recommendations.trainingType}`;
   document.getElementById('dailyCalories').textContent = `Recommended Daily Calories: ${recommendations.dailyCalories} kcal`;
 
+  // Показываем блок с рекомендациями
   document.getElementById('recommendations').style.display = 'block';
+  
+  // Создаем график
+  createProgressChart(recommendations.dailyCalories);
+  
+  // Добавляем функциональность сохранения
+  document.getElementById('saveBtn').addEventListener('click', function() {
+    const dataToSave = {
+      workout: recommendations.workout,
+      diet: recommendations.diet,
+      trainingType: recommendations.trainingType,
+      dailyCalories: recommendations.dailyCalories
+    };
+    localStorage.setItem('userRecommendations', JSON.stringify(dataToSave));
+    alert('Recommendations saved!');
+  });
 }
+
+// Загружаем сохраненные рекомендации при старте
+window.onload = function() {
+  const savedRecommendations = JSON.parse(localStorage.getItem('userRecommendations'));
+  if (savedRecommendations) {
+    document.getElementById('workout').textContent = savedRecommendations.workout;
+    document.getElementById('diet').textContent = savedRecommendations.diet;
+    document.getElementById('trainingType').textContent = savedRecommendations.trainingType;
+    document.getElementById('dailyCalories').textContent = savedRecommendations.dailyCalories;
+    document.getElementById('recommendations').style.display = 'block';
+  }
+};
