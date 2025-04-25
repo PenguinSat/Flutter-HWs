@@ -1,0 +1,100 @@
+// 1. Car -> PassengerCar
+class CarBase {
+  String make;
+  int year;
+
+  CarBase(this.make, this.year);
+
+  String description() => "Car: $make, Year: $year";
+}
+
+class PassengerCar extends CarBase {
+  PassengerCar(String make, int year) : super(make, year);
+
+  @override
+  String description() => "Passenger Car: $make, manufactured in $year";
+}
+
+// 2. Fruit -> Apple
+class Fruit {
+  String name;
+
+  Fruit(this.name);
+
+  String taste() => "Unknown taste";
+}
+
+class Apple extends Fruit {
+  Apple(String name) : super(name);
+
+  @override
+  String taste() => "$name tastes sweet and a little tart.";
+}
+
+// 3. Animal -> Dog
+class Animal {
+  String name;
+  int age;
+
+  Animal(this.name, this.age);
+
+  String sound() => "Unknown sound";
+}
+
+class Dog extends Animal {
+  Dog(String name, int age) : super(name, age);
+
+  @override
+  String sound() => "$name says: Woof!";
+}
+
+// 4. Item -> Product
+class Item {
+  String name;
+  double price;
+
+  Item(this.name, this.price);
+
+  String description() => "Item: $name, Price: \$${price.toStringAsFixed(2)}";
+}
+
+class Product extends Item {
+  Product(String name, double price) : super(name, price);
+
+  @override
+  String description() => "Product '$name' costs \$${price.toStringAsFixed(2)}.";
+}
+
+// 5. Shape -> Circle
+abstract class Shape {
+  String color;
+  Shape(this.color);
+
+  double area();
+}
+
+class CircleShape extends Shape {
+  double radius;
+
+  CircleShape(String color, this.radius) : super(color);
+
+  @override
+  double area() => 3.14159 * radius * radius;
+}
+
+// 6. Employee -> Manager
+class Employee {
+  String name;
+  double salary;
+
+  Employee(this.name, this.salary);
+
+  String displayInfo() => "Employee: $name, Salary: \$${salary.toStringAsFixed(2)}";
+}
+
+class Manager extends Employee {
+  Manager(String name, double salary) : super(name, salary);
+
+  @override
+  String displayInfo() => "Manager $name earns \$${salary.toStringAsFixed(2)} per year.";
+}
