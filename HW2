@@ -1,0 +1,134 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.*;
+
+public class CatFactApp {
+    private static final String API_URL = "https://catfact.ninja/fact";
+    private static final List<String> savedFacts = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static String selectedLanguage = "English";
+
+    public static void main(String[] args) {
+        System.out.println("🐱 Welcome to the Cat Fact App!");
+
+        chooseLanguage();
+
+        while (true) {
+            String fact = fetchCatFact();
+            String translatedFact = translateFact(fact, selectedLanguage);
+
+            System.out.println("\n📘 Fact: " + translatedFact);
+            System.out.println("\nWhat would you like to do?");
+            System.out.println("1. Add to favorites and show next fact");
+            System.out.println("2. Show next fact");
+            System.out.println("3. View saved facts");
+            System.out.println("4. Clear saved facts");
+            System.out.println("5. Change language");
+            System.out.println("6. Exit");
+
+            System.out.print("👉 Your choice: ");
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    savedFacts.add(translatedFact);
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    showSavedFacts();
+                    break;
+                case "4":
+                    savedFacts.clear();
+                    System.out.println("✅ List cleared.");
+                    break;
+                case "5":
+                    chooseLanguage();
+                    break;
+                case "6":
+                    System.out.println("👋 Goodbye!");
+                    return;
+                default:
+                    System.out.println("⚠️ Invalid choice. Try again.");
+            }
+        }
+    }
+
+    private static void chooseLanguage() {
+        System.out.println("\n🌐 Choose language:");
+        System.out.println("1. English");
+        System.out.println("2. Spanish");
+        System.out.println("3. French");
+
+        while (true) {
+            System.out.print("👉 Your choice: ");
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    selectedLanguage = "English";
+                    return;
+                case "2":
+                    selectedLanguage = "Spanish";
+                    return;
+                case "3":
+                    selectedLanguage = "French";
+                    return;
+                default:
+                    System.out.println("⚠️ Invalid input. Try again.");
+            }
+        }
+    }
+
+    private static String fetchCatFact() {
+        try {
+            URL url = new URL(API_URL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream())
+            );
+            StringBuilder response = new StringBuilder();
+            String line;
+
+            while ((line = in.readLine()) != null) {
+                response.append(line);
+            }
+
+            in.close();
+
+            String json = response.toString();
+            int start = json.indexOf(":\"") + 2;
+            int end = json.indexOf("\",\"length");
+
+            return json.substring(start, end);
+        } catch (Exception e) {
+            return "⚠️ Failed to fetch cat fact.";
+        }
+    }
+
+    private static String translateFact(String fact, String language) {
+        switch (language) {
+            case "Spanish":
+                return "[ES] " + fact;
+            case "French":
+                return "[FR] " + fact;
+            default:
+                return fact;
+        }
+    }
+
+    private static void showSavedFacts() {
+        System.out.println("\n⭐ Your saved facts:");
+        if (savedFacts.isEmpty()) {
+            System.out.println("😿 No saved facts.");
+        } else {
+            for (int i = 0; i < savedFacts.size(); i++) {
+                System.out.println((i + 1) + ". " + savedFacts.get(i));
+            }
+        }
+    }
+}
