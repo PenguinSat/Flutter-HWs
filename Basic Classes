@@ -1,0 +1,82 @@
+class Circle {
+  double radius;
+  String color;
+
+  Circle(this.radius, this.color);
+
+  double getRadius() => radius;
+  String getColor() => color;
+}
+
+class Student {
+  String name;
+  int age;
+  double gpa;
+
+  Student(this.name, this.age, this.gpa);
+
+  String getName() => name;
+  int getAge() => age;
+  double getGPA() => gpa;
+}
+
+class Car {
+  String make;
+  String model;
+  int year;
+
+  Car(this.make, this.model, this.year);
+
+  String getMake() => make;
+  String getModel() => model;
+  int getYear() => year;
+}
+
+class Book {
+  String title;
+  String author;
+  int year;
+
+  Book(this.title, this.author, this.year);
+
+  String getTitle() => title;
+  String getAuthor() => author;
+  int getYear() => year;
+}
+
+class Rectangle {
+  double width;
+  double height;
+
+  Rectangle(this.width, this.height);
+
+  double getWidth() => width;
+  double getHeight() => height;
+
+  double getArea() => width * height;
+  double getPerimeter() => 2 * (width + height);
+}
+
+class BankAccount {
+  String accountNumber;
+  double balance;
+  String owner;
+
+  BankAccount(this.accountNumber, this.balance, this.owner);
+
+  String getAccountNumber() => accountNumber;
+  double getBalance() => balance;
+  String getOwner() => owner;
+
+  void deposit(double amount) {
+    balance += amount;
+  }
+
+  void withdraw(double amount) {
+    if (amount <= balance) {
+      balance -= amount;
+    } else {
+      print("Insufficient balance.");
+    }
+  }
+}
