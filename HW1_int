@@ -1,0 +1,89 @@
+import 'dart:io';
+import 'dart:math';
+
+// 1. Print the squares of numbers from 10 to 20
+void printSquares() {
+  for (int i = 10; i <= 20; i++) {
+    print('${i * i}');
+  }
+}
+
+// 2. Calculate the sum of numbers from 1 to n (n is input from keyboard)
+void sumUpToN() {
+  stdout.write("Enter a number: ");
+  int n = int.parse(stdin.readLineSync()!);
+  int sum = (n * (n + 1)) ~/ 2; // Using arithmetic sum formula
+  print("Sum of numbers from 1 to $n: $sum");
+}
+
+// 3. Calculate deposit amount after N years with 3% annual interest
+void calculateDeposit() {
+  stdout.write("Enter initial deposit amount (S): ");
+  double s = double.parse(stdin.readLineSync()!);
+  stdout.write("Enter number of years (N): ");
+  int n = int.parse(stdin.readLineSync()!);
+
+  double amount = s * pow(1.03, n); // Compound interest formula
+  print("Amount after $n years: ${amount.toStringAsFixed(2)}");
+}
+
+// 4. Print numbers from 20 to 50 that are divisible by 3 but not by 5
+void printDivisibleBy3Not5() {
+  for (int i = 20; i <= 50; i++) {
+    if (i % 3 == 0 && i % 5 != 0) {
+      print(i);
+    }
+  }
+}
+
+// 5. Find the sum of numbers from 1 to 50 that are divisible by 5 or 7
+void sumDivisibleBy5Or7() {
+  int sum = 0;
+  for (int i = 1; i <= 50; i++) {
+    if (i % 5 == 0 || i % 7 == 0) {
+      sum += i;
+    }
+  }
+  print("Sum of numbers divisible by 5 or 7: $sum");
+}
+
+// 6. Print two-digit numbers that are divisible by 4 but not by 6
+void printDivisibleBy4Not6() {
+  for (int i = 10; i < 100; i++) {
+    if (i % 4 == 0 && i % 6 != 0) {
+      print(i);
+    }
+  }
+}
+
+// 7. Find the sum of numbers from 100 to 200 that are multiples of 17
+void sumMultiplesOf17() {
+  int sum = 0;
+  for (int i = 102; i <= 200; i += 17) {
+    sum += i;
+  }
+  print("Sum of numbers from 100 to 200 that are multiples of 17: $sum");
+}
+
+// 8. Calculate the sum of squares of numbers from 1 to a given integer N
+void sumOfSquares() {
+  stdout.write("Enter a number (N): ");
+  int n = int.parse(stdin.readLineSync()!);
+
+  int sum = 0;
+  for (int i = 1; i <= n; i++) {
+    sum += i * i;
+  }
+  print("Sum of squares from 1 to $n: $sum");
+}
+
+void main() {
+  printSquares();
+  sumUpToN();
+  calculateDeposit();
+  printDivisibleBy3Not5();
+  sumDivisibleBy5Or7();
+  printDivisibleBy4Not6();
+  sumMultiplesOf17();
+  sumOfSquares();
+}
