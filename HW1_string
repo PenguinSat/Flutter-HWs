@@ -1,0 +1,43 @@
+// Create a string made of two copies of the last two characters
+String lastTwoTwice(String str) {
+  if (str.length < 2) return '';
+  String lastTwo = str.substring(str.length - 2);
+  return lastTwo + lastTwo;
+}
+
+// Create a string made of the first two characters, or return the whole string if shorter than 2
+String firstTwoOrAll(String str) {
+  return str.length < 2 ? str : str.substring(0, 2);
+}
+
+// Return the first half of an even-length string
+String firstHalf(String str) {
+  if (str.length % 2 != 0) return ''; // Ensure even length
+  return str.substring(0, str.length ~/ 2);
+}
+
+// Create a string without the first and last character
+String removeFirstLast(String str) {
+  if (str.length < 2) return '';
+  return str.substring(1, str.length - 1);
+}
+
+// Return short+long+short string format
+String shortLongShort(String a, String b) {
+  return a.length < b.length ? '$a$b$a' : '$b$a$b';
+}
+
+// Move the first two characters to the end
+String moveFirstTwoToEnd(String str) {
+  if (str.length < 2) return '';
+  return str.substring(2) + str.substring(0, 2);
+}
+
+void main() {
+  print(lastTwoTwice("hello")); // "lolo"
+  print(firstTwoOrAll("h")); // "h"
+  print(firstHalf("abcdefgh")); // "abcd"
+  print(removeFirstLast("abcdef")); // "bcde"
+  print(shortLongShort("abc", "xy")); // "xyabcxy"
+  print(moveFirstTwoToEnd("abcdef")); // "cdefab"
+}
